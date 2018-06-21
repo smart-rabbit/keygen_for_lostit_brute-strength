@@ -11,7 +11,7 @@ program accepts:
 16 <= len(KEY) < 256
 ```
 	
-it lowercase all `NAME` chars, and  delete from name all non `a`-`z` chars. Then it delete all non base64-alphabet chars from `KEY`, and check if `len(KEY) == 16`
+it lowercase all `NAME` chars, and  delete from name all non `a`-`z` chars. Then it delete all non base64-alphabet chars from `KEY`, and check if `len(KEY) == 16`.
 Lets consider `NAME` as string with length 5 or greater, and which consist from 'a'-'z' chars.
 Lets consider `KEY` as string with length 16, and which consist from base64-alphabet chars (`+,/',0-9,A-Z,a-z`).
 
