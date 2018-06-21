@@ -23,7 +23,7 @@ which are valid NAME:KEY pairs, but for some reason blacklisted in such way.
 
 Now your program begin to calculate different hashes and make different checks.
 
-**FIRST HASH**: hash retrieved from `KEY`, lets give him a name `K_hash_1`. `K_hash_1` is 12-byte hash, each 4 bytes of `KEY` converted to 3 bytes of `K_hash_1` . Below code snippet explain this transformation, consider `get_K_hash_1()` function:
+**FIRST HASH**: hash retrieved from `KEY`, lets give to it a name `K_hash_1`. `K_hash_1` is 12-byte hash, each 4 bytes of `KEY` converted to 3 bytes of `K_hash_1` . Below code snippet explain this transformation, consider `get_K_hash_1()` function:
 ```C
 char base64alphabet_map[] = {
 	/* 01*/ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -119,7 +119,7 @@ void init_N_hash(const char * name, unsigned char name_len, char dest_hash[0x10]
 	}
 }
 ```
-,then  `N_hash`  is hashed with MD5 and XOR-ed 1000 times in the same way as K_hash_2  (discribed above).
+,then  `N_hash`  is hashed with MD5 and XOR-ed 1000 times in the same way as K_hash_2  (described above).
 
 **1ST CHECK**:  
 Note: python lists used for below pseudocode
