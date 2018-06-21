@@ -3,8 +3,8 @@ KeygenMe "Psychic powers or brute strength your choice" ([task source](https://f
 ### Program flow explanation
 
 program accept:
-	```5 <= len(NAME) < 256
-	16 <= len(KEY) < 256```
+	```5 <= len(NAME) < 256```
+	```16 <= len(KEY) < 256```
 it lowercase all `NAME` chars, and  delete from name all non `a`-`z` chars. Then it delete all non base64-alphabet chars from KEY, and check if `len(KEY) == 16`
 Lets consider `NAME` as string with length 5 or greater, and which consist from 'a'-'z' chars.
 Lets consider `KEY` as string with length 16, and which consist from base64-alphabet chars (`+,/',0-9,A-Z,a-z`).
@@ -83,4 +83,15 @@ void init_K_hash_2(const char src_hash[16], char dest_hash[0x10]) {
 	dest_hash[0xF] = src_hash[3];
 }
 ```
+Then `K_hash_2`  is used as input string to calculate MD5 hash. `K_hash_2` is XOR-ed with resulting hash. See code below:
+```C
+#include <openssl/md5.h>
 
+void _cdecl MD5_and_XOR(_Inout_ char hash_buffer[16]) {
+	char md5[MD5_DIGEST_LENGTH] = { 0 };
+	MD5((const unsigned char *)hash_buffer, 16, (unsigned char *)md5);
+	for (int i = 0; i < 16; i++)
+		hash_buffer[i] ^= md5[i];
+	return;
+}
+```
