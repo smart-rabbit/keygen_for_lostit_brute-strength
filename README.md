@@ -65,7 +65,7 @@ void get_K_hash_1(const char *key, char custom_hash[16]) {
 }
 ```
 
-**SECOND HASH**: 2nd 16-byte hash, which is retrieved from `K_hash_1`, lets name it `K_hash_2`.
+**SECOND HASH**: 16-byte hash, which is retrieved from `K_hash_1`, lets name it `K_hash_2`.
 `K_hash_2` initilized using function in listing below.
 ```C
 void init_K_hash_2(const char src_hash[16], char dest_hash[0x10]) {
