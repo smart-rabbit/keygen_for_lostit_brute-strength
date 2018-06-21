@@ -4,7 +4,7 @@ KeygenMe "Psychic powers or brute strength your choice" ([task source](https://f
 
 ### Program flow explanation
 
-program accepts:
+at start program checks if:
 
 ```
 5 <= len(NAME) < 256
