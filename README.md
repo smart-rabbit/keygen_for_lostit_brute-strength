@@ -164,6 +164,6 @@ void brute_key_quarter(const char * in_3chars, char * out_4chars) {
 ```
 
 **2ND CHECK**:  
-we have 2nd 8-bytes of `KEY`, we could brute 1st 8-bytes of `KEY`.
+we have 2nd 8-bytes of `KEY`, we could try to brute 1st 8-bytes of `KEY` and pass this check.
 
 Repository contains multithreaded bruter, brute threads quantity is equal to quantity of cores on your PC .
