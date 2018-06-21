@@ -113,3 +113,56 @@ void init_N_hash(const char * name, unsigned char name_len, char dest_hash[0x10]
 	}
 }
 ```
+,then  `N_hash`  is hashed with MD5 and XOR-ed 1000 times in the same way as K_hash_2  (discribed above).
+
+**1ST CHECK**:  
+Note: python lists used for below pseudocode
+```python
+N_hash[0:6] == K_hash_1[6:12]
+```
+
+**2ND CHECK**:
+```python
+K_hash_2[0:6] == [0xE9, 0x85, 0x5D, 0x5B, 0x2F, 0x41]
+```
+
+### Checks bypass
+**1ST CHECK**:  
+we have `NAME`, we can produce `N_hash`, `N_hash[0:6]`  according to 1st check conditions should be equal to `K_hash_1[6:12]`, from `K_hash_1[6:12]` we can easely get 2nd part of `KEY[8:16]`.
+Below code of function that help us retrieve `KEY[8:12]` from `N_hash[0:3]` and `KEY[12:16]` from `N_hash[3:6]`.
+```C
+void brute_key_quarter(const char * in_3chars, char * out_4chars) {
+	/*Brute-force init*/
+	char input[4] = { '.','/' ,'/' ,'/' }; 	// '/'-'9', 'A'-'Z', 'a'-'z'
+	unsigned int* p2input_as_dw = (unsigned int*)input;
+	char output[3] = { 0 };
+	/*Brute-force loop*/
+	do {
+	START:
+		(*p2input_as_dw)++;
+		for (int i = 0; i < 4; i++) {
+			if (
+				!(input[i] >= '/' && input[i] <= '9') &&
+				!(input[i] >= 'A' && input[i] <= 'Z') &&
+				!(input[i] >= 'a' && input[i] <= 'z')
+				) {
+				goto START;
+			}
+		}
+		get_K_hash_1st_quarter(input, output);
+	} while (
+		!(output[0] == in_3chars[0] && output[1] == in_3chars[1] && output[2] == in_3chars[2])
+		);
+	/*Brute-force end*/
+	out_4chars[0] = input[0];
+	out_4chars[1] = input[1];
+	out_4chars[2] = input[2];
+	out_4chars[3] = input[3];
+};
+```
+
+**2ND CHECK**:  
+CAUTION: This solution is far from elegance. You processor will burn :)
+we have 2nd 8-bytes of `KEY`, we could brute 1st 8-bytes of `KEY`.
+
+Repository contains multithreaded bruter, brute threads quantity is equal to quantity of cores on your PC .
