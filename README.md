@@ -87,11 +87,29 @@ Then `K_hash_2`  is used as input string to calculate MD5 hash. `K_hash_2` is XO
 ```C
 #include <openssl/md5.h>
 
-void _cdecl MD5_and_XOR(_Inout_ char hash_buffer[16]) {
+void _cdecl MD5_and_XOR(char hash_buffer[16]) {
 	char md5[MD5_DIGEST_LENGTH] = { 0 };
 	MD5((const unsigned char *)hash_buffer, 16, (unsigned char *)md5);
 	for (int i = 0; i < 16; i++)
 		hash_buffer[i] ^= md5[i];
 	return;
+}
+```
+This operation repeated 1000 times.
+
+**THIRD HASH**: getting 16-byte hash from `NAME`, lets name it `N_hash`.
+`N_hash` initilized using function in listing below.
+```C
+void init_N_hash(const char * name, unsigned char name_len, char dest_hash[0x10]) {
+	if (name_len <= 0x10) {
+		for (int i = 0; i < 0x10; i++) {
+			dest_hash[i] = name[i % name_len];
+		}
+	}
+	if (name_len > 0x10) {
+		memcpy(dest_hash, name, 0x10);
+		for (int i = 0; i < name_len - 0x10; i++)
+			dest_hash[i % 0x10] ^= name[i + 0x10];
+	}
 }
 ```
