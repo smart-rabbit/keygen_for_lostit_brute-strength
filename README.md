@@ -134,7 +134,7 @@ K_hash_2[0:6] == [0xE9, 0x85, 0x5D, 0x5B, 0x2F, 0x41]
 
 ### Checks bypass
 **1ST CHECK**:  
-we have `NAME`, we can produce `N_hash`, `N_hash[0:6]`  according to 1st check conditions should be equal to `K_hash_1[6:12]`, from `K_hash_1[6:12]` we can easely get 2nd part of `KEY[8:16]`.
+we have `NAME`, consequently we can produce `N_hash`, `N_hash[0:6]`  according to 1st check conditions should be equal to `K_hash_1[6:12]`, from `K_hash_1[6:12]` we can easely get 2nd part of `KEY[8:16]`.
 Below code of function that help us retrieve `KEY[8:12]` from `N_hash[0:3]` and `KEY[12:16]` from `N_hash[3:6]`.
 ```C
 void brute_key_quarter(const char * in_3chars, char * out_4chars) {
@@ -168,6 +168,6 @@ void brute_key_quarter(const char * in_3chars, char * out_4chars) {
 ```
 
 **2ND CHECK**:  
-we have 2nd 8-bytes of `KEY`, we could try to brute 1st 8-bytes of `KEY` and pass this check.
+we have 2nd 8-bytes part of `KEY`, we could try to brute 1st 8-bytes part of `KEY` and pass this check.
 
 Repository contains multithreaded bruter, brute threads quantity is equal to quantity of cores on your PC .
