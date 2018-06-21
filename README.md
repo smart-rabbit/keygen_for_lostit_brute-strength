@@ -15,9 +15,9 @@ Then program compare if NAME:KEY pair is not
 
 which are valid NAME:KEY pairs, but for some reason blacklisted in such way.
 
-Now your program begin to calculate different hashes and make different CHECKS:
+Now your program begin to calculate different hashes and make different checks.
 
-**FIRST HASH**: hash retrieved from `KEY`, lets give him a name `K_hash_1`. `K_hash_1` is 12 byte hash, each 4 bytes of `KEY` converted to 3 bytes of `K_hash_1` . Below code snippet explain this transformation, consider `get_K_hash_1()` function:
+**FIRST HASH**: hash retrieved from `KEY`, lets give him a name `K_hash_1`. `K_hash_1` is 12-byte hash, each 4 bytes of `KEY` converted to 3 bytes of `K_hash_1` . Below code snippet explain this transformation, consider `get_K_hash_1()` function:
 ```C
 char base64alphabet_map[] = {
 	/* 01*/ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -58,3 +58,29 @@ void get_K_hash_1(const char *key, char custom_hash[16]) {
 	}
 }
 ```
+
+**SECOND HASH**: 2nd 16-byte hash, which is retrieved from `K_hash_1`, lets name it `K_hash_2`.
+`K_hash_2` initilized using function in listing below.
+```C
+void init_K_hash_2(const char src_hash[16], char dest_hash[0x10]) {
+	dest_hash[0x0] = src_hash[0];
+	dest_hash[0x1] = src_hash[1];
+	dest_hash[0x2] = src_hash[2];
+	dest_hash[0x3] = src_hash[3];
+	dest_hash[0x4] = src_hash[4];
+	dest_hash[0x5] = src_hash[5];
+
+	dest_hash[0x6] = src_hash[0];
+	dest_hash[0x7] = src_hash[1];
+	dest_hash[0x8] = src_hash[2];
+	dest_hash[0x9] = src_hash[3];
+	dest_hash[0xA] = src_hash[4];
+	dest_hash[0xB] = src_hash[5];
+
+	dest_hash[0xC] = src_hash[0];
+	dest_hash[0xD] = src_hash[1];
+	dest_hash[0xE] = src_hash[2];
+	dest_hash[0xF] = src_hash[3];
+}
+```
+
