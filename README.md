@@ -1,4 +1,4 @@
-KeygenMe "Psychic powers or brute strength your choice" ([task source](https://forum.tuts4you.com/topic/37904-keygenme-01-psychic-powers-or-brute-strength-your-choice)) **brute-force solution**
+KeygenMe "Psychic powers or brute strength your choice" ([task source](https://forum.tuts4you.com/topic/37904-keygenme-01-psychic-powers-or-brute-strength-your-choice)) **mulithreaded brute-force solution**
 
 **CAUTION**: _This solution is far from elegance. You processor will burn :)_
 
