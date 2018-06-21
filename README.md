@@ -1,5 +1,7 @@
 KeygenMe "Psychic powers or brute strength your choice" ([task source](https://forum.tuts4you.com/topic/37904-keygenme-01-psychic-powers-or-brute-strength-your-choice)) **brute-force solution**
 
+**CAUTION**: _This solution is far from elegance. You processor will burn :)_
+
 ### Program flow explanation
 
 program accept:
@@ -162,7 +164,6 @@ void brute_key_quarter(const char * in_3chars, char * out_4chars) {
 ```
 
 **2ND CHECK**:  
-CAUTION: This solution is far from elegance. You processor will burn :)
 we have 2nd 8-bytes of `KEY`, we could brute 1st 8-bytes of `KEY`.
 
 Repository contains multithreaded bruter, brute threads quantity is equal to quantity of cores on your PC .
