@@ -2,5 +2,4 @@ KeygenMe "Psychic powers or brute strength your choice" ([task source](https://f
 
 **CAUTION**: _This solution is far from elegance. You processor will burn :)_
 
-**USE** this solution [link](https://github.com/smart-rabbit/keygen_for_lostit_psychic_powers)
-
+**Use** this [more elegant solution](https://github.com/smart-rabbit/keygen_for_lostit_psychic_powers) !!
